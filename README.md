@@ -1,7 +1,7 @@
 # Q-Hackathon - IBM Challenge
 
 Team: Hackstreet Girls feat. Flo Rida  
-Rebecca Armbruster, Flo Engels, Kim Lindner, Sarah Sester, Luisa Theobald
+Rebecca Armbruster, Florian Engels, Kim Lindner, Sarah Sester, Luisa Theobald
 
 ## Description
 
