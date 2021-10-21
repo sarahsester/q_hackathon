@@ -24,7 +24,7 @@ def find_optimal_allocation(cost_matrix, number_teachers, number_schools):
 
     # Constraint 2: Each school is assigned to minimum three teacher.
     for s in range(number_schools):
-        solver.Add(solver.Sum([x[t, s] for t in range(number_teachers)]) >= 10)
+        solver.Add(solver.Sum([x[t, s] for t in range(number_teachers)]) >= 1)
 
     # Constraint 3: Each school is assigned to maximal 50 teachers.
     for s in range(number_schools):
@@ -55,14 +55,16 @@ def find_optimal_allocation(cost_matrix, number_teachers, number_schools):
 
 
 if __name__ == '__main__':
+    nb_of_teachers = 100
+    nb_of_schools = 100
+
     # Get cost matrix
-    distances = pd.read_csv('../data/distances.csv')
+    #distances = pd.read_csv('../data/distances.csv')
+    distances = np.random.rand(nb_of_teachers, nb_of_schools) * 200
     pref_big_school = pd.read_pickle(r'../data/preference_big_school.pkl')
     pref_rural = pd.read_pickle(r'../data/preference_rural.pkl')
-    costs = create_cost_matrix(distances, pref_big_school, pref_rural)
+    costs = create_cost_matrix(distances, pref_big_school[0:nb_of_teachers, 0:nb_of_schools], pref_rural[0:nb_of_teachers, 0:nb_of_schools])
 
-    # Data
-    costs = np.random.rand(10000, 1000)*200
     #print(costs)
     costs2 = [
         [90, 80, 75, 70],
@@ -71,4 +73,4 @@ if __name__ == '__main__':
         [45, 110, 95, 115],
         [50, 100, 90, 100],
     ]
-    find_optimal_allocation(costs, number_teachers=10000, number_schools=1000)
+    find_optimal_allocation(costs, number_teachers=nb_of_teachers, number_schools=nb_of_schools)
